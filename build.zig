@@ -34,6 +34,7 @@ pub fn build(b: *std.Build) void {
     });
 
     exe.root_module.addImport("network", b.dependency("network", .{}).module("network"));
+    exe.root_module.addImport("sokol", b.dependency("sokol", .{ .target = target, .optimize = optimize }).module("sokol"));
 
     // This declares intent for the executable to be installed into the
     // standard location when the user invokes the "install" step (the default
