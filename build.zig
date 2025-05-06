@@ -26,13 +26,14 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
-
     // This creates another `std.Build.Step.Compile`, but this one builds an executable
     // rather than a static library.
     const exe = b.addExecutable(.{
         .name = "t3_playground",
         .root_module = exe_mod,
     });
+
+    exe.root_module.addImport("network", b.dependency("network", .{}).module("network"));
 
     // This declares intent for the executable to be installed into the
     // standard location when the user invokes the "install" step (the default
